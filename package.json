@@ -13,8 +13,11 @@
     "@supabase/supabase-js": "^2.48.1",
     "next": "15.1.6",
     "next-swagger-doc": "^0.4.1",
+    "node-html-to-image": "^5.0.0",
+    "puppeteer": "^24.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "sharp": "^0.33.5",
     "swagger-ui-react": "^5.18.3"
   },
   "devDependencies": {
