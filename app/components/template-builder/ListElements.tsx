@@ -1,5 +1,7 @@
-import componentsMap from "../elements";  
 import { useState } from "react";
+import componentsMap from "../elements";  
+import Popover from "../Popover";
+import { CircleHelp } from "lucide-react";
 
 export default function ListElements() {
   const [filter, setFilter] = useState("");
@@ -26,6 +28,21 @@ export default function ListElements() {
         <span className="text-sm text-gray-700 font-medium">
           {component.name}
         </span>
+        <div className="ml-auto">
+          <Popover
+            trigger={
+              <div className="w-5 h-5 flex items-center justify-center text-gray-400 hover:text-gray-600">
+                <CircleHelp />
+              </div>
+            }
+            content={
+              <div className="max-w-xs">
+                <p className="text-sm text-gray-600">{component.description}</p>
+              </div>
+            }
+            placement="left"
+          />
+        </div>
       </div>;
     }) }
   </div>;
