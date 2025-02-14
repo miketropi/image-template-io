@@ -1,7 +1,7 @@
 import componentsMap from "../elements";
 
 type ComponentsConfig = {
-  element: "TextElement" | "ImageElement";
+  element: "TextElement" | "ImageElement" | "BrowserContainer" | "Code";
   props: any
 }
 

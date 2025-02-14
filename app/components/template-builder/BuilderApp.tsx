@@ -26,9 +26,27 @@ export default function BuilderApp() {
           {
             element: "ImageElement",
             props: {
-              image: "https://via.placeholder.com/150",
+              image: "https://placehold.co/600x400/000000/FFF",
             }
-          }
+          },
+          {
+            element: "BrowserContainer",
+            props: {
+              url: "https://image-template-io.vercel.app",
+              children: <div>
+                <DynamicLoader components={ [
+                  {
+                    element: "Code",
+                    props: {
+                      code: `const sum = (a, b) => a + b;
+console.log(sum(2, 3)); // 5`,
+                      language: "javascript"
+                    }
+                  }
+                ] } />
+              </div>
+            }
+          },
         ] } />
       </div>
     </div>
