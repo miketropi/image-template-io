@@ -105,6 +105,7 @@ export default function MessageSimulate({
             className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             {message.sender === 'other' && otherAvatar && (
+              // eslint-disable-next-line @next/next/no-img-element
               <img src={otherAvatar} alt={otherName} className="w-6 h-6 rounded-full mr-2 self-end" />
             )}
             <div

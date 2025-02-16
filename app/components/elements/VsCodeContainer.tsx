@@ -1,11 +1,11 @@
 "use client";
 
 import { Code as CodeIcon } from "lucide-react";
-import { useState } from 'react';
 import DynamicLoader from "../template-builder/DynamicLoader";
 
 interface VSCodeContainerProps {
   children?: React.ReactNode;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   childrenData?: any;
   fileName?: string;
 }
@@ -17,7 +17,6 @@ export const explain = {
 }
 
 export default function VSCodeContainer({ children, childrenData, fileName = "untitled.tsx" }: VSCodeContainerProps) {
-  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <div className="w-full rounded-lg shadow-lg bg-[#1e1e1e] overflow-hidden">

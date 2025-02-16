@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import UserProfile from "./UserProfile";
 
 export default function Navbar() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any  
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {

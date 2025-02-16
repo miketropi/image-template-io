@@ -3,13 +3,6 @@ import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-interface Template {
-  id: string;
-  name: string;
-  created_at: string;
-  status: 'draft' | 'published';
-}
-
 export default async function DashboardPage() {
   const supabase = createServerComponentClient({ cookies });
 

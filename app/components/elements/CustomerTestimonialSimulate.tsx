@@ -83,6 +83,7 @@ export default function CustomerTestimonialSimulate({
             <div className="flex items-start space-x-4">
               {/* Avatar */}
               {testimonial.customerAvatar ? (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={testimonial.customerAvatar}
                   alt={testimonial.customerName}

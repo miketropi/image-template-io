@@ -9,7 +9,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
 
   const handleLogin = async () => {
-    const { data: { user }, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });

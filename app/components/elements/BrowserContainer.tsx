@@ -7,6 +7,7 @@ import DynamicLoader from "../template-builder/DynamicLoader";
 interface BrowserContainerProps {
   children: React.ReactNode;
   url?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   childrenData?: any;
 }
 

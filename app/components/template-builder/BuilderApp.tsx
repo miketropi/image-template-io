@@ -1,8 +1,6 @@
-import { useTemplateBuilderStore } from "@/lib/store/useTemplateBuilderStore";
 import DynamicLoader from "./DynamicLoader";
 import ListElements from "./ListElements";
 export default function BuilderApp() {
-  const { name, setName } = useTemplateBuilderStore();
   return <div>
     <div className="grid grid-cols-12 gap-8 mt-8">
       {/* Left Column - 30% */}

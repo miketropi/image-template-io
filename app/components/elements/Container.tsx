@@ -4,6 +4,7 @@ import { Box } from 'lucide-react';
 import DynamicLoader from '../template-builder/DynamicLoader';
 interface ContainerProps {
   children: React.ReactNode;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   childrenData?: any;
   backgroundColor?: string;
   backgroundImage?: string;
@@ -60,6 +61,7 @@ export default function Container({
   };
 
   const getStyles = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const styles: any = {
       paddingTop: `${spacingY}px`,
       paddingBottom: `${spacingY}px`,
