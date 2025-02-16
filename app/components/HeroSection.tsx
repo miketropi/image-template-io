@@ -8,8 +8,8 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({
-  title = "Transform Your Images with AI",
-  description = "Create stunning templates and designs in seconds with our AI-powered platform",
+  title = "🖼️ Template to Image Magic: One API Call Away!",
+  description = "Transform your template designs into stunning visuals instantly ✨ Seamless API integration for lightning-fast template-to-image conversion",
   buttonText = "Get Started",
   buttonLink = "#",
   backgroundColor = "bg-gray-50",
@@ -19,10 +19,10 @@ export default function HeroSection({
     <section className={`${backgroundColor} py-20`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`text-${textAlignment}`}>
-          <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
+          <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl max-w-[70%] mx-auto">
             {title}
           </h1>
-          <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl">
+          <p className="mt-3 max-w-[70%] mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl">
             {description}
           </p>
           <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">

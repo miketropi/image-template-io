@@ -2,19 +2,21 @@
 
 import { Chrome } from "lucide-react";
 import { useState } from 'react';
+import DynamicLoader from "../template-builder/DynamicLoader";
 
 interface BrowserContainerProps {
   children: React.ReactNode;
   url?: string;
+  childrenData?: any;
 }
 
 export const explain = {
-  name: "BrowserContainer",
+  name: "Browser Container",
   icon: <Chrome />,
   description: "A browser container component that displays a browser interface with a URL bar and traffic lights.",
 }
 
-export default function BrowserContainer({ children, url = "https://example.com" }: BrowserContainerProps) {
+export default function BrowserContainer({ children, childrenData, url = "https://example.com" }: BrowserContainerProps) {
   const [isDark, setIsDark] = useState(false);
 
   return (
@@ -51,7 +53,8 @@ export default function BrowserContainer({ children, url = "https://example.com"
       
       {/* Browser Content */}
       <div className={`p-4 ${isDark ? 'text-gray-300' : 'text-gray-900'}`}>
-        {children}
+        { children }
+        { childrenData && <DynamicLoader components={ childrenData } /> }
       </div>
     </div>
   );

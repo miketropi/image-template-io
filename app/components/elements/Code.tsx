@@ -33,11 +33,16 @@ const Code = ({ code, language, showLineNumbers = true }: CodeProps) => {
       language={language}
       style={oneDark}
       showLineNumbers={showLineNumbers}
-      wrapLines={true}
+      // showInlineLineNumbers={false}
+      // wrapLines={true}
+      wrapLongLines={true}
+      lineProps={{ style: { flexWrap: 'wrap' } }}
       customStyle={{
         margin: 0,
         borderRadius: '4px',
         fontSize: '14px',
+        wordBreak: 'break-all',
+        whiteSpace: 'pre-wrap'
       }}
     >
       {code}
