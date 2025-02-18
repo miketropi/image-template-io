@@ -14,7 +14,18 @@ export const swaggerConfig = {
     },
   ],
   components: {
-    // Reusable components will be defined here
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+    },
   },
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
 };
 
