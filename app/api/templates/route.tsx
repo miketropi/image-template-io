@@ -8,6 +8,8 @@ import { cookies } from "next/headers";
  *   post:
  *     summary: Create a new template
  *     description: Creates a new template for the authenticated user
+ *     tags:
+ *       - Templates
  *     security:
  *       - bearerAuth: []
  *     requestBody:

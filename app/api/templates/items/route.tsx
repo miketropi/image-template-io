@@ -8,6 +8,8 @@ import { cookies } from "next/headers";
  *   get:
  *     summary: Get all templates
  *     description: Retrieves all templates for the authenticated user
+ *     tags:
+ *       - Templates
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -36,7 +38,7 @@ import { cookies } from "next/headers";
  *         description: Server error
  */
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     const supabase = createRouteHandlerClient({ cookies });
     const { data: { user } } = await supabase.auth.getUser();
@@ -45,12 +47,23 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { data, error } = await supabase
+    // console.log(cookies ?? null)
+    // const authHeader = request.headers.get('Authorization'); 
+    // if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // }
+    // const token = authHeader.split(' ')[1];
+    // const { data: { user }, error } = await supabase.auth.getUser(token);
+    // if (error || !user) {
+    //   return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    // }
+
+    const { data, error: dataError } = await supabase
       .from('templates')
       .select('*')
       .eq('user_id', user.id);
 
-    if (error) throw error;
+    if (dataError) throw dataError;
 
     return NextResponse.json(data);
   } catch (error) {

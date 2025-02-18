@@ -8,6 +8,8 @@ import { cookies } from "next/headers";
  *   get:
  *     summary: Get a template by ID
  *     description: Retrieves a specific template by its ID for the authenticated user
+ *     tags:
+ *       - Templates
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -78,6 +80,8 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
  *   put:
  *     summary: Update a template
  *     description: Updates an existing template for the authenticated user
+ *     tags:
+ *       - Templates
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -154,6 +158,8 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
  *   delete:
  *     summary: Delete a template
  *     description: Deletes an existing template for the authenticated user
+ *     tags:
+ *       - Templates
  *     security:
  *       - bearerAuth: []
  *     parameters:
