@@ -13,7 +13,8 @@ export async function middleware(req: NextRequest) {
   // If no session and trying to access protected routes
   if (!session && (
     req.nextUrl.pathname.startsWith('/dashboard') || 
-    req.nextUrl.pathname.startsWith('/profile')
+    req.nextUrl.pathname.startsWith('/profile') ||
+    req.nextUrl.pathname.startsWith('/templates')
   )) {
     return NextResponse.redirect(new URL('/auth/login', req.url));
   }
@@ -25,5 +26,6 @@ export const config = {
   matcher: [
     '/dashboard/:path*',
     '/profile/:path*',
+    '/templates/:path*'
   ],
 }; 

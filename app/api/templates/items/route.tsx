@@ -38,7 +38,7 @@ import { cookies } from "next/headers";
  *         description: Server error
  */
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const supabase = createRouteHandlerClient({ cookies });
     const { data: { user } } = await supabase.auth.getUser();
@@ -67,6 +67,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json(data);
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

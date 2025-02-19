@@ -1,8 +1,10 @@
+"use client";
+
 import { useEffect } from "react";
 import { Text as TextIcon } from "lucide-react";
 import WebFont from 'webfontloader';
 
-export const explain = {
+export const explain = { 
   name: "Text",
   icon: <TextIcon />,
   description: "Text is a component that displays a text.",
@@ -32,7 +34,7 @@ export default function TextElement({
         families: [ fontFamily ]
       }
     });
-  }, []);
+  }, [fontFamily]);
 
   return (
     <div

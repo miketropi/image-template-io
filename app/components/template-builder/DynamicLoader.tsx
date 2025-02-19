@@ -1,7 +1,7 @@
 import componentsMap from "../elements";
 
 type ComponentsConfig = {
-  element: "TextElement" | "ImageElement" | "BrowserContainer" | "Code" | "VSCodeContainer" | "MessageSimulate" | "CustomerTestimonialSimulate" | "Container" | "Avatar" | "Space";
+  element: "TextElement" | "ImageElement" | "BrowserContainer" | "Code" | "VSCodeContainer" | "MessageSimulate" | "CustomerTestimonialSimulate" | "Container" | "Avatar" | "Space" | "LetterSimulation";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props: any
 }

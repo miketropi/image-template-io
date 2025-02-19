@@ -70,6 +70,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 
     return NextResponse.json(data);
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
@@ -148,6 +149,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
 
     return NextResponse.json(data);
   } catch (error) {
+    console.log(error)  
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
@@ -204,6 +206,7 @@ export async function DELETE(req: Request, { params }: { params: { id: string } 
 
     return NextResponse.json({ message: "Template deleted successfully" });
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

@@ -7,5 +7,5 @@ export default function NewPage() {
       <h1 className="text-2xl font-bold text-gray-900">New Template</h1>
       <BuilderApp />
     </div>
-  </div>;
+  </div>;  
 }

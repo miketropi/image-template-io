@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { MessageCircleMore } from 'lucide-react';
+import Image from 'next/image';
 export const explain = {
   name: 'Message Simulate',
   description: 'A component that simulates a message conversation between a user and another person.',
@@ -86,7 +87,7 @@ export default function MessageSimulate({
       <div className="border-b p-3 bg-gray-50">
         <div className="flex items-center space-x-2">
           {otherAvatar ? (
-            <img src={otherAvatar} alt={otherName} className="w-10 h-10 rounded-full object-cover" />
+            <Image src={otherAvatar} alt={otherName} width={40} height={40} className="w-10 h-10 rounded-full object-cover" />
           ) : (
             <div className="w-10 h-10 rounded-full bg-blue-500"></div>
           )}
@@ -124,7 +125,7 @@ export default function MessageSimulate({
               </p>
             </div>
             {message.sender === 'user' && userAvatar && (
-              <img src={userAvatar} alt="You" className="w-6 h-6 rounded-full ml-2 self-end" />
+              <Image src={userAvatar} alt="You" width={24} height={24} className="w-6 h-6 rounded-full ml-2 self-end" />
             )}
           </div>
         ))}

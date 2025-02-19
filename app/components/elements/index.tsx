@@ -8,7 +8,7 @@ import CustomerTestimonialSimulate, { explain as CustomerTestimonialSimulateExpl
 import Container, { explain as ContainerExplain } from "./Container";
 import Avatar, { explain as AvatarExplain } from "./Avatar";
 import Space, { explain as SpaceExplain } from "./Space";
-
+import LetterSimulation, { explain as LetterSimulationExplain } from "./LetterSimulation";
 const componentsMap = {
   TextElement: {
     component: TextElement,
@@ -49,6 +49,10 @@ const componentsMap = {
   Space: {
     component: Space,
     ...SpaceExplain
+  },
+  LetterSimulation: {
+    component: LetterSimulation,
+    ...LetterSimulationExplain
   }
 }
 
