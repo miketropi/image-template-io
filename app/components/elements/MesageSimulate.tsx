@@ -7,6 +7,36 @@ export const explain = {
   name: 'Message Simulate',
   description: 'A component that simulates a message conversation between a user and another person.',
   icon: <MessageCircleMore />,
+  propsDefault: {
+    initialMessages: [
+      {
+        id: 1,
+        text: "Hi there! I'm your AI assistant. How can I help you today? 👋",
+        sender: "other",
+        timestamp: new Date('2024-01-10T10:00:00')
+      },
+      {
+        id: 2,
+        text: "I need help setting up authentication in my app",
+        sender: "user", 
+        timestamp: new Date('2024-01-10T10:01:00')
+      },
+      {
+        id: 3,
+        text: "I can definitely help with that! Supabase provides an easy-to-use auth system. Would you like to see some example code?",
+        sender: "other",
+        timestamp: new Date('2024-01-10T10:02:00')
+      }
+    ],
+    otherName: "AI Assistant",
+    otherStatus: "Online",
+    userMessageColor: "bg-blue-600",
+    otherMessageColor: "bg-gray-100",
+    messageContainerHeight: "h-80",
+    containerClassName: "w-full max-w-2xl mx-auto",
+    userAvatar: "https://i.pinimg.com/736x/0b/97/6f/0b976f0a7aa1aa43870e1812eee5a55d.jpg",
+    otherAvatar: "https://i.pinimg.com/736x/8b/77/d1/8b77d1aae465393ea09bd703e5ff31ea.jpg",
+  }
 }
 
 interface Message {

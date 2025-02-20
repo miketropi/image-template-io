@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { UserRound } from 'lucide-react';
+import { Star, UserRound } from 'lucide-react';
 
 export const explain = {
   name: 'Customer Testimonial',
   description: 'A component that displays customer testimonials in a list format',
-  icon: <UserRound />,
+  icon: <Star />,
 };
 
 interface Testimonial {

@@ -40,7 +40,7 @@ export default function ListElements() {
                 <p className="text-sm text-gray-600">{component.description}</p>
               </div>
             }
-            placement="left"
+            placement="top-center"
           />
         </div>
       </div>;

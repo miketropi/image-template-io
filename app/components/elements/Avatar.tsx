@@ -19,7 +19,15 @@ interface AvatarProps {
 export const explain = {
   name: "Avatar",
   icon: <UserRound />,
-  description: "A circular avatar component that displays an image, name and position"
+  description: "A circular avatar component that displays an image, name and position",
+  propsDefault: {
+    image: "https://i.pinimg.com/736x/0b/97/6f/0b976f0a7aa1aa43870e1812eee5a55d.jpg",
+    name: "John Doe",
+    position: "Software Engineer",
+    align: "center",
+    nameColor: "text-gray-900",
+    positionColor: "text-gray-900"
+  }
 }
 
 const Avatar = ({ 

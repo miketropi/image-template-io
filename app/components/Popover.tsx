@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface PopoverProps {
   trigger: React.ReactNode;
   content: React.ReactNode;
-  placement?: "top" | "bottom" | "left" | "right";
+  placement?: "top" | "bottom" | "left" | "right" | "bottom-center" | "top-center";
 }
 
 /**
@@ -16,7 +17,7 @@ interface PopoverProps {
  * <Popover 
  *   trigger={<button>Click me</button>}
  *   content={<div>Popover content</div>}
- *   placement="bottom" // Optional: 'top' | 'bottom' | 'left' | 'right'
+ *   placement="bottom" // Optional: 'top' | 'bottom' | 'left' | 'right' | 'bottom-center' | 'top-center'
  * />
  * ```
  * 
@@ -41,41 +42,98 @@ export default function Popover({ trigger, content, placement = "bottom" }: Popo
       }
     }
 
+    function handleScroll() {
+      if (isOpen) {
+        // Update popover position when scrolling
+        if (popoverRef.current) {
+          const styles = getPopoverStyles();
+          Object.assign(popoverRef.current.style, styles);
+        }
+      }
+    }
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    window.addEventListener("scroll", handleScroll, true);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll, true);
+    };
+  }, [isOpen]);
 
   const getPopoverStyles = () => {
-    const baseStyles = "absolute z-50 bg-background border border-gray-200 rounded-lg shadow-lg p-4";
+    const baseStyles = {
+      position: 'fixed' as const,
+      zIndex: 50,
+      backgroundColor: 'var(--background)',
+      border: '1px solid #e5e7eb',
+      borderRadius: '0.5rem',
+      boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+      padding: '1rem'
+    };
+    
+    const triggerRect = triggerRef.current?.getBoundingClientRect();
+    const popoverRect = popoverRef.current?.getBoundingClientRect();
+    
+    if (!triggerRect) return baseStyles;
+
+    const positionStyles: { [key: string]: string | number } = {};
+    const gap = 8; // Gap between trigger and popover
+
+    // Get viewport dimensions
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
     
     switch (placement) {
       case "top":
-        return `${baseStyles} bottom-full mb-2`;
+        positionStyles.top = `${triggerRect.top - (popoverRect?.height || 0) - gap}px`;
+        positionStyles.left = `${triggerRect.left}px`;
+        break;
+      case "top-center":
+        positionStyles.top = `${triggerRect.top - (popoverRect?.height || 0) - gap}px`;
+        positionStyles.left = `${triggerRect.left + (triggerRect.width / 2)}px`;
+        positionStyles.transform = 'translateX(-50%)';
+        break;
       case "bottom":
-        return `${baseStyles} top-full mt-2`;
+        positionStyles.top = `${triggerRect.bottom + gap}px`;
+        positionStyles.left = `${triggerRect.left}px`;
+        break;
+      case "bottom-center":
+        positionStyles.top = `${triggerRect.bottom + gap}px`;
+        positionStyles.left = `${triggerRect.left + (triggerRect.width / 2)}px`;
+        positionStyles.transform = 'translateX(-50%)';
+        break;
       case "left":
-        return `${baseStyles} right-full mr-2`;
+        positionStyles.top = `${triggerRect.top}px`;
+        positionStyles.left = `${triggerRect.left - (popoverRect?.width || 0) - gap}px`;
+        break;
       case "right":
-        return `${baseStyles} left-full ml-2`;
+        positionStyles.top = `${triggerRect.top}px`;
+        positionStyles.left = `${triggerRect.right + gap}px`;
+        break;
       default:
-        return `${baseStyles} top-full mt-2`;
+        positionStyles.top = `${triggerRect.bottom + gap}px`;
+        positionStyles.left = `${triggerRect.left}px`;
     }
+
+    return { ...baseStyles, ...positionStyles };
   };
 
   return (
-    <div className="relative inline-block">
+    <div style={{ position: 'relative', display: 'inline-block' }}>
       <div
         ref={triggerRef}
         onClick={() => setIsOpen(!isOpen)}
-        className="cursor-pointer"
+        style={{ cursor: 'pointer' }}
       >
         {trigger}
       </div>
       
-      {isOpen && (
-        <div ref={popoverRef} className={getPopoverStyles()}>
+      {isOpen && createPortal(
+        <div ref={popoverRef} style={getPopoverStyles()}>
           {content}
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

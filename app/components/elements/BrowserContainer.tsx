@@ -3,8 +3,11 @@
 import { Chrome } from "lucide-react";
 import { useState } from 'react';
 import DynamicLoader from "../template-builder/DynamicLoader";
+import AddElement from "../template-builder/AddElement";
+import { useTemplateBuilderStore } from "@/lib/store/useTemplateBuilderStore";
 
 interface BrowserContainerProps {
+  __id: string;
   children: React.ReactNode;
   url?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,9 +18,13 @@ export const explain = {
   name: "Browser Container",
   icon: <Chrome />,
   description: "A browser container component that displays a browser interface with a URL bar and traffic lights.",
+  propsDefault: {
+    url: "https://example.com",
+  },
 }
 
-export default function BrowserContainer({ children, childrenData, url = "https://example.com" }: BrowserContainerProps) {
+export default function BrowserContainer({ __id, children, childrenData, url = "https://example.com" }: BrowserContainerProps) {
+  const { mode } = useTemplateBuilderStore();
   const [isDark, setIsDark] = useState(false);
 
   return (
@@ -56,6 +63,7 @@ export default function BrowserContainer({ children, childrenData, url = "https:
       <div className={`p-4 ${isDark ? 'text-gray-300' : 'text-gray-900'}`}>
         { children }
         { childrenData && <DynamicLoader components={ childrenData } /> }
+        { mode === "builder" && <AddElement parentID={ __id } /> }
       </div>
     </div>
   );

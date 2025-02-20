@@ -2,7 +2,10 @@
 
 import { Box } from 'lucide-react';
 import DynamicLoader from '../template-builder/DynamicLoader';
+import AddElement from '../template-builder/AddElement';
+import { useTemplateBuilderStore } from '@/lib/store/useTemplateBuilderStore';
 interface ContainerProps {
+  __id: string;
   children: React.ReactNode;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   childrenData?: any;
@@ -23,19 +26,30 @@ export const explain = {
   name: "Container",
   icon: <Box />,
   description: "A flexible container component with customizable background and spacing options.",
+  propsDefault: {
+    backgroundGradient: {
+      from: "#4F46E5", // Indigo
+      to: "#10B981", // Emerald
+      direction: "bottom right"
+    },
+    spacingX: 50,
+    spacingY: 50,
+  },
 }
 
 export default function Container({
+  __id,
   children,
   childrenData,
   backgroundColor,
   backgroundImage,
   backgroundGradient,
-  spacingX = 4,
-  spacingY = 4,
+  spacingX = 50,
+  spacingY = 50,
   borderRadius = 10,
   className = ''
 }: ContainerProps) {
+  const { mode } = useTemplateBuilderStore();
   const getBackgroundStyles = () => {
     if (backgroundImage) {
       return ''; 
@@ -94,6 +108,8 @@ export default function Container({
     >
       {children} 
       {childrenData && <DynamicLoader components={childrenData} />}
+
+      { mode === "builder" && <AddElement parentID={ __id } /> }
     </div>
   );
 }

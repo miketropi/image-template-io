@@ -3,13 +3,15 @@ import { immer } from 'zustand/middleware/immer';
 import { v4 as uuidv4 } from 'uuid';
 
 type TemplateBuilderState = {
+  mode: "builder" | "preview";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   elements: any[];
+  addElement: (parentID: string, element: any) => void;
 };
 
 const sampleElement = [
   {
-    id: uuidv4(),
+    __id: uuidv4(),
     element: "Container",
     props: {
       spacingY: 50,
@@ -21,7 +23,7 @@ const sampleElement = [
       },
       childrenData: [
         {
-          id: uuidv4(),
+          __id: uuidv4(),
           element: "MessageSimulate",
           props: {
             initialMessages: [
@@ -58,7 +60,7 @@ const sampleElement = [
     }
   },
   {
-    id: uuidv4(),
+    __id: uuidv4(),
     element: "Container",
     props: {
       spacingY: 50,
@@ -69,7 +71,7 @@ const sampleElement = [
         direction: "top right"
       },
       childrenData: [
-        { id: uuidv4(), 
+        { __id: uuidv4(), 
           element: "VSCodeContainer", 
           props: {  
           fileName: "index.tsx" ,
@@ -128,7 +130,30 @@ const signOut = async () => {
 ]
 
 export const useTemplateBuilderStore = create<TemplateBuilderState>()(
-  immer(() => ({
-    elements: sampleElement
+  immer((set) => ({
+    mode: "builder",
+    elements: sampleElement,
+    setMode: (mode: "builder" | "preview") => set({ mode }),
+    addElement: (parentID: string, element: any) => set((state) => {
+      const findParentAndAddElement = (elements: any[], parentID: string, element: any): boolean => {
+        for (const el of elements) {
+          if (el.__id === parentID) {
+            if (!el.props.childrenData) {
+              el.props.childrenData = [];
+            }
+            el.props.childrenData.push(element);
+            return true;
+          }
+          if (el.props.childrenData) {
+            if (findParentAndAddElement(el.props.childrenData, parentID, element)) {
+              return true;
+            }
+          }
+        }
+        return false;
+      };
+      findParentAndAddElement(state.elements, parentID, element);
+    }),
+    
   }))
 );
