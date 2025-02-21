@@ -2,7 +2,7 @@
 
 import { Code as CodeIcon } from "lucide-react";
 import DynamicLoader from "../template-builder/DynamicLoader";
-
+import { v4 as uuidv4 } from 'uuid';
 interface VSCodeContainerProps {
   children?: React.ReactNode;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,6 +14,21 @@ export const explain = {
   name: "VS Code",
   icon: <CodeIcon />,
   description: "A VS Code-like editor container with file tabs and activity bar.",
+  isContainer: true,
+  propsDefault: {
+    fileName: "untitled.tsx",
+    childrenData: [
+      {
+        __id: uuidv4(),
+        element: "Code",
+        props: {
+          code: "console.log('Hello, world!');",
+          language: "javascript",
+          showLineNumbers: true
+        }
+      }
+    ]
+  }
 }
 
 export default function VSCodeContainer({ children, childrenData, fileName = "untitled.tsx" }: VSCodeContainerProps) {

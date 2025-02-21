@@ -25,6 +25,20 @@ export const explain = {
   name: "Code",
   icon: <Braces />,
   description: "A code block with syntax highlighting",
+  propsDefault: {
+    code: `function calculateSum(numbers) {
+  let sum = 0;
+  for (let num of numbers) {
+    sum += num;
+  }
+  return sum;
+}
+
+const nums = [1, 2, 3, 4, 5];
+console.log(calculateSum(nums));`,
+    language: "javascript",
+    showLineNumbers: true
+  }
 }
 
 const Code = ({ code, language, showLineNumbers = true }: CodeProps) => {

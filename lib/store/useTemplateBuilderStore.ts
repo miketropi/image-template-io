@@ -5,14 +5,25 @@ import { v4 as uuidv4 } from 'uuid';
 type TemplateBuilderState = {
   mode: "builder" | "preview";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  templateData: {
+    id: string;
+    name: string;
+    description: string;
+    status: string;
+    elements: any[];
+    [key: string]: any;
+  };
   elements: any[];
+  setTemplateData: (templateData: any) => void;
   addElement: (parentID: string, element: any) => void;
-};
+  setElements: (elements: any[]) => void; 
+}; 
 
 const sampleElement = [
   {
     __id: uuidv4(),
     element: "Container",
+    isContainer: true,
     props: {
       spacingY: 50,
       spacingX: 50,
@@ -62,6 +73,7 @@ const sampleElement = [
   {
     __id: uuidv4(),
     element: "Container",
+    isContainer: true,
     props: {
       spacingY: 50,
       spacingX: 50,
@@ -73,11 +85,12 @@ const sampleElement = [
       childrenData: [
         { __id: uuidv4(), 
           element: "VSCodeContainer", 
+          isContainer: true,
           props: {  
           fileName: "index.tsx" ,
           backgroundColor: "bg-white",
           childrenData: [
-            { element: "Code", props: { 
+            { __id: uuidv4(), element: "Code", props: { 
               code: `import { createClient } from '@supabase/supabase-js'
 
 // Initialize Supabase client
@@ -115,8 +128,8 @@ const signOut = async () => {
             } }
           ]
         } },
-        { element: "Space", props: { height: 20 } },
-        { element: "Avatar", props: { 
+        { __id: uuidv4(), element: "Space", props: { height: 20 } },
+        { __id: uuidv4(), element: "Avatar", props: { 
           image: "https://i.pinimg.com/736x/0b/97/6f/0b976f0a7aa1aa43870e1812eee5a55d.jpg",
           name: "John Doe",
           position: "Software Engineer",
@@ -132,8 +145,17 @@ const signOut = async () => {
 export const useTemplateBuilderStore = create<TemplateBuilderState>()(
   immer((set) => ({
     mode: "builder",
-    elements: sampleElement,
+    templateData: {
+      id: '',
+      name: 'New Template',
+      status: 'public',
+      description: '',
+      elements: [],
+    },
+    elements: [],
     setMode: (mode: "builder" | "preview") => set({ mode }),
+    setTemplateData: (templateData: any) => set({ templateData }),
+    setElements: (elements: any[]) => set({ elements }),
     addElement: (parentID: string, element: any) => set((state) => {
       const findParentAndAddElement = (elements: any[], parentID: string, element: any): boolean => {
         for (const el of elements) {

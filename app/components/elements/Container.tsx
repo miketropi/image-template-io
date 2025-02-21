@@ -26,6 +26,7 @@ export const explain = {
   name: "Container",
   icon: <Box />,
   description: "A flexible container component with customizable background and spacing options.",
+  isContainer: true,
   propsDefault: {
     backgroundGradient: {
       from: "#4F46E5", // Indigo

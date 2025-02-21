@@ -18,6 +18,7 @@ export const explain = {
   name: "Browser Container",
   icon: <Chrome />,
   description: "A browser container component that displays a browser interface with a URL bar and traffic lights.",
+  isContainer: true,
   propsDefault: {
     url: "https://example.com",
   },

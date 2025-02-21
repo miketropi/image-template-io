@@ -8,6 +8,13 @@ export const explain = {
   name: "Text",
   icon: <TextIcon />,
   description: "Text is a component that displays a text.",
+  propsDefault: {
+    text: "Life is like a box of emojis 📦 - you never know which one you're gonna get! 🤔😂",
+    align: "center",
+    fontStyle: "normal",
+    fontFamily: "Inconsolata",
+    fontSize: "16px",
+  }
 }
 
 export default function TextElement({

@@ -79,10 +79,6 @@ export default function Popover({ trigger, content, placement = "bottom" }: Popo
 
     const positionStyles: { [key: string]: string | number } = {};
     const gap = 8; // Gap between trigger and popover
-
-    // Get viewport dimensions
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
     
     switch (placement) {
       case "top":
