@@ -10,6 +10,21 @@ export default function BuilderApp() {
   const { elements, setElements, templateData, setTemplateData } = useTemplateBuilderStore();
   return <div>
     <div className="grid grid-cols-12 gap-8 mt-8">
+
+      {/* Right Column - 70% */}
+      <div className="col-span-9 bg-white rounded-lg shadow p-6">
+        <h2 className="text-lg font-medium text-gray-900 mb-4">Canvas</h2>
+        {/* Canvas content will go here */}
+        {
+          (() => {
+            if (elements.length === 0) {
+              return <SelectDefaultTemplate />;
+            }
+            return <DynamicLoader components={ elements } />;
+          })()
+        }
+      </div>
+
       {/* Left Column - 30% */}
       <div className="col-span-3 bg-white rounded-lg shadow p-6">
         <h2 className="text-lg font-medium text-gray-900 mb-4">Add New Template</h2>
@@ -48,20 +63,6 @@ export default function BuilderApp() {
             
           }}>Save Template</Button>
         </div>
-      </div>
-
-      {/* Right Column - 70% */}
-      <div className="col-span-9 bg-white rounded-lg shadow p-6">
-        <h2 className="text-lg font-medium text-gray-900 mb-4">Canvas</h2>
-        {/* Canvas content will go here */}
-        {
-          (() => {
-            if (elements.length === 0) {
-              return <SelectDefaultTemplate />;
-            }
-            return <DynamicLoader components={ elements } />;
-          })()
-        }
       </div>
     </div>
   </div>;
