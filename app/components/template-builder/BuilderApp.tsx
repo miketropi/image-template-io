@@ -6,8 +6,9 @@ import SelectField from "../fields/SelectField";
 import TextAreaField from "../fields/TextAreaField";
 import Button from "../Button";
 import { Save } from "lucide-react";
+
 export default function BuilderApp() {
-  const { elements, setElements, templateData, setTemplateData } = useTemplateBuilderStore();
+  const { elements, templateData, setTemplateData, onSaveTemplate } = useTemplateBuilderStore();
   return <div>
     <div className="grid grid-cols-12 gap-8 mt-8">
 
@@ -20,7 +21,8 @@ export default function BuilderApp() {
             if (elements.length === 0) {
               return <SelectDefaultTemplate />;
             }
-            return <DynamicLoader components={ elements } />;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            return <DynamicLoader components={ elements as any } />;
           })()
         }
       </div>
@@ -59,8 +61,10 @@ export default function BuilderApp() {
             />
           </div>
           <hr className="my-4" />
-          <Button icon={ Save } onClick={() => {
-            
+          <Button icon={ Save } onClick={ async () => {
+            console.log("Saving template");
+            const { data, error } = await onSaveTemplate();
+            console.log(data, error); 
           }}>Save Template</Button>
         </div>
       </div>

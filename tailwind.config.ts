@@ -10,6 +10,7 @@ export default {
     extend: {
       fontFamily: {
         inconsolata: ["var(--font-inconsolata)", "sans-serif"],
+        fredoka: ["var(--font-fredoka-sans)", "sans-serif"],
       },
       colors: {
         background: "var(--background)",

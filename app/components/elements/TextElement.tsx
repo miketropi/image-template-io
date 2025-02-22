@@ -12,7 +12,7 @@ export const explain = {
     text: "Life is like a box of emojis 📦 - you never know which one you're gonna get! 🤔😂",
     align: "center",
     fontStyle: "normal",
-    fontFamily: "Inconsolata",
+    fontFamily: "Fredoka",
     fontSize: "16px",
   }
 }
@@ -21,7 +21,7 @@ export default function TextElement({
   text,
   align = 'left',
   fontStyle = 'normal',
-  fontFamily = 'Inconsolata',
+  fontFamily = 'Fredoka',
   fontSize = '16px',
   fontWeight = 'normal',
   color = 'black'

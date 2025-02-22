@@ -1,6 +1,7 @@
 import mapElements from "../elements";
 import { useState } from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function ElementsSelectGrid({ onSelect }: { onSelect: (element: any) => void }) {
   const [filter, setFilter] = useState("");
 

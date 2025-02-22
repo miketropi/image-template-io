@@ -41,6 +41,7 @@ const SelectField: FC<SelectFieldProps> = ({
             w-full
             px-3
             py-2
+            pr-10
             rounded-lg
             border
             bg-white
