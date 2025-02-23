@@ -56,8 +56,8 @@ export default function SidebarNav() {
                       : 'text-gray-700 hover:bg-gray-100'
                   }`}
                 >
-                  <item.icon className="w-5 h-5" />
-                  <span>{item.name}</span>
+                  <item.icon className="w-4 h-4" />
+                  <span className="text-sm font-bold">{item.name}</span>
                 </Link>
               </li>
             );
@@ -72,8 +72,8 @@ export default function SidebarNav() {
           onClick={() => {/* Add logout handler */}}
           className="flex items-center gap-3 px-3 py-2 w-full text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
         >
-          <LogOut className="w-5 h-5" />
-          <span>Logout</span>
+          <LogOut className="w-4 h-4" />
+          <span className="text-sm">Logout</span>
         </button>
       </div>
     </div>
