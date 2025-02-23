@@ -2,6 +2,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import TemplatesList from '@/app/components/TemplatesList';
 
 export default async function DashboardPage() {
   const supabase = createServerComponentClient({ cookies });
@@ -19,16 +20,10 @@ export default async function DashboardPage() {
     .order('created_at', { ascending: false });
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <Link
-            href="/templates/new"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          >
-            New Template
-          </Link>
+          <h1 className="text-xl font-bold text-gray-800 pt-4">Dashboard</h1>
         </div>
 
         {/* Stats */}
@@ -85,8 +80,9 @@ export default async function DashboardPage() {
               ))}
             </div>
           ) : (
-            <div className="px-6 py-8 text-center text-gray-500">
-              <p>No templates yet. Create your first template to get started!</p>
+            <div className="px-6 py-8 text-gray-500">
+              {/* <p>No templates yet. Create your first template to get started!</p> */}
+              <TemplatesList />
             </div>
           )}
         </div>

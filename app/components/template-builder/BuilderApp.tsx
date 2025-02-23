@@ -31,6 +31,7 @@ export default function BuilderApp() {
       <div className="col-span-3 bg-white rounded-lg shadow p-6">
         <h2 className="text-lg font-medium text-gray-900 mb-4">Add New Template</h2>
         {/* Settings content will go here */}
+        {/* { JSON.stringify(templateData) } */}
         <hr className="my-4" />
         <div className="space-y-4">
           <div>

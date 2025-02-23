@@ -30,7 +30,7 @@ export const useTemplateBuilderStore = create<TemplateBuilderState>()(
     templateData: {
       id: '',
       name: 'New Template',
-      status: 'public',
+      status: 'draft',
       description: '',
       elements: [],
     },
@@ -74,7 +74,7 @@ export const useTemplateBuilderStore = create<TemplateBuilderState>()(
       };
 
       const { data, error } = await supabase
-        .from('templates')
+        .from('templates_design')
         .insert([Data])
         .select();
 
